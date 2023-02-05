@@ -6,7 +6,7 @@ from gui.HGBGuiConstants import *
 
 # TODO: Associate model params w/ objects
 # TODO: Save/load config
-
+# this is the one that loads everything else
 
 getcontext().prec = 12
 
