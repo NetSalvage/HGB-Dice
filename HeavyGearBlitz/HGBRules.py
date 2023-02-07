@@ -65,6 +65,7 @@ class ModelTypes(Enum):
 class RerollRules(Enum):
     Never = auto()
     BelowAverage = auto()
+    SmartBelowAverage = auto()
 
 
 class RollTimeSteps(Enum):

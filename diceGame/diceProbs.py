@@ -18,13 +18,14 @@ def all_probs_high_die(dice: int, sides: int) -> Dict[int, float]:
 
 
 def all_probs_threshold(dice: int, sides: int, val: int) -> Dict[int, float]:
-    if sides < val or dice < 1:
+    # NS: Unused other than in this file? Unsure what it calculates.
+    if sides < 1 or sides < val or dice < 1 : #error handling
         return {0: 1.0}
 
-    dieChance = max(0, (sides - val) + 1) / sides
+    dieChance = (sides - val + 1) / sides
     return {
-        k: math.comb(dice, k) * (dieChance ** k) * (1 - dieChance) ** (dice - k)
-        for k in range(dice + 1)
+        k: math.comb(dice, k) * (dieChance ** k) * (1 - dieChance) ** (dice - k)    # "k will has this assigned to it"
+        for k in range(dice + 1)                                                    # "and there will be dice+1 'k' values"
     }
 
 

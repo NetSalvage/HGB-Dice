@@ -22,6 +22,7 @@ class BaseEffect:
 
 @dataclass(order=True, frozen=True)
 class State:
+    """Not sure what this is yet. A class that defines, stores, and works with Effects?"""
     prob: Decimal = Decimal(1)
     effects: FrozenSet(BaseEffect) = field(default_factory=frozenset)
 
