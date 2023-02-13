@@ -13,19 +13,19 @@ def prob_max_roll(dice: int, sides: int, val: int) -> float:
 
 
 def all_probs_high_die(dice: int, sides: int) -> Dict[int, float]:
-    """Probabilities for all max rolls on XdY"""
+    """Probabilities for all highest rolls on XdY"""
     return {(k + 1): prob_max_roll(dice, sides, k + 1) for k in range(sides)}
 
 
 def all_probs_threshold(dice: int, sides: int, val: int) -> Dict[int, float]:
-    # NS: Unused other than in this file? Unsure what it calculates.
-    if sides < 1 or sides < val or dice < 1 : #error handling
+    """Returns a dictionary listing the probability of 0-[dice] successes, given a pool of [dice] total dice. A success is rolling [val] or higher. Each die has [sides] total sides."""
+    if dice < 1 or sides < 1 or sides < val: #error handling
         return {0: 1.0}
 
     dieChance = (sides - val + 1) / sides
     return {
-        k: math.comb(dice, k) * (dieChance ** k) * (1 - dieChance) ** (dice - k)    # "k will has this assigned to it"
-        for k in range(dice + 1)                                                    # "and there will be dice+1 'k' values"
+        k: math.comb(dice, k) * (dieChance ** k) * (1 - dieChance) ** (dice - k)    # "k:" bc this is a method that returns a dictionary.
+        for k in range(dice + 1)                                                    # Making [from 0 to dice] kv pairs
     }
 
 

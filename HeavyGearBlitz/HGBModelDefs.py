@@ -397,11 +397,11 @@ class SkillComponent(Component):
         return frozenset({state.add_effect(eff)})
 
     def _add_skill_bonus(self: SkillComponent, state: State) -> FrozenSet[State]:
-        dice = state.sum_effects(name=RuleEffects.ModDice) - 1
+        dice = state.sum_effects(name=RuleEffects.ModDice) - 1 # biggest die doesn't count for successes
         result_die = state.sum_effects(name=RuleEffects.ModResult, source="Result Die")
         threshold = state.sum_effects(name=RuleEffects.ModThreshold)
 
-        # sides=result_die because max roll is the result die by definition
+        # sides=result_die because max roll is the result die by definition (probability tricks)
         skill_probs = all_probs_threshold(
             dice=int(dice), sides=int(result_die), val=int(threshold)
         )
