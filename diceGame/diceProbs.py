@@ -37,6 +37,7 @@ def all_probs_brute_force_max_roll(dice: int) -> Dict[int, float]:
 
 
 def all_probs_drop_high(dice: int) -> Dict[int, float]:
+    # No "drop highest" mechanic in Heavy Gear Blitz, so probably superfluous.
     # Just for verification purposes
     count = Counter(map(max, map(drop_high, product((1, 2, 3, 4, 5, 6), repeat=dice))))
     rolls = sum(count.values())
@@ -44,6 +45,7 @@ def all_probs_drop_high(dice: int) -> Dict[int, float]:
 
 
 def drop_high(roll: Iterable) -> tuple:
+    # No "drop highest" mechanic in Heavy Gear Blitz, so probably superfluous.
     roll = list(roll)
     roll.remove(max(roll))
     return tuple(roll)
@@ -55,10 +57,12 @@ def check_accuracy(maxDice=9):
 
 
 def expected(pdf: Dict[int, float]) -> float:
+    """Returns the expected value of a given probability distribution."""
     return sum(k * v for k, v in pdf.items())
 
 
 def standard_dev(pdf: Dict[int, float]) -> float:
+    """Returns the standard deviation of a given probability distribution. (Stdev is not wholly applicable because HGB stats are not normalized, but it's conceptually useful.)"""
     exp = expected(pdf)
     return math.sqrt(sum(((k - exp) ** 2) * v for k, v in pdf.items()))
 

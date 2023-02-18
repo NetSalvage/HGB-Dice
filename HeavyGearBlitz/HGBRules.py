@@ -65,7 +65,7 @@ class ModelTypes(Enum):
 class RerollRules(Enum):
     Never = auto()
     BelowAverage = auto()
-    SmartBelowAverage = auto()
+    # SmartBelowAverage = auto()
 
 
 class RollTimeSteps(Enum):
@@ -276,6 +276,7 @@ class DiceRuleComponent(Component):
         max_probs = all_probs_high_die(dice=int(dice), sides=6)
 
         if state.get_effects(name=RerollRules.BelowAverage):
+            # "Currently all reroll decisions occur at MoS time and can't look ahead."
             avg = expected(max_probs)
             rerolls = [roll for roll in max_probs if roll < avg]
             new_probs = {
